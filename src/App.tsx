@@ -30,6 +30,16 @@ function App() {
     setInputValue("");
   }
 
+  //型指定
+  const handleEdit = (id: number, inputValue: string) => {
+    const newTodos = todos.map(todo=>{
+      if(todo.id === id){
+        todo.inputValue=inputValue;
+      }
+      return todo;
+    })
+    setTodos(newTodos);
+  }
 
 
   return (
@@ -38,12 +48,26 @@ function App() {
       <div>
         <h2>ToDo List with Typescript</h2>
         <form onSubmit ={(e) =>{handleSubmit(e)}}>
-          <input type="text" onChange={(e)=>{handleChange(e)}}className="inputText"/>
-          <input type="submit" value="add" className="submitButton"/>
+          <input
+            type="text"
+            onChange={(e)=>{handleChange(e)}}
+            className="inputText"
+          />
+          <input
+            type="submit"
+            value="add"
+            className="submitButton"
+          />
         </form>
         <ul className="todoList">
           {todos.map(todo=>(
-            <li key={todo.id}>{todo.inputValue}</li>
+            <li key={todo.id}>
+              {/* {todo.inputValue} */}
+              <input type="text"
+                onChange={(e)=>{handleEdit(todo.id, e.target.value)}}
+                className="inputText"
+                value={todo.inputValue}/>
+            </li>
           ))}
         </ul>
       </div>
