@@ -17,7 +17,7 @@ function App() {
     setInputValue(e.target.value);
   }
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) =>{
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     //ボタンを押したときにリロードしないようにする
     e.preventDefault();
     const newTodo: Todo ={
@@ -41,6 +41,11 @@ function App() {
           <input type="text" onChange={(e)=>{handleChange(e)}}className="inputText"/>
           <input type="submit" value="add" className="submitButton"/>
         </form>
+        <ul className="todoList">
+          {todos.map(todo=>(
+            <li key={todo.id}>{todo.inputValue}</li>
+          ))}
+        </ul>
       </div>
     </div>
 
