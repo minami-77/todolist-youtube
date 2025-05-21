@@ -50,7 +50,11 @@ function App() {
     })
     setTodos(newTodos);
   }
-
+  //filter関数(合っていないときは残す)
+  const handleDelete = (id:number) =>{
+    const newTodos = todos.filter(((todo)=>todo.id !== id));
+    setTodos(newTodos);
+  }
 
   return (
     <>
@@ -82,6 +86,7 @@ function App() {
                 <input type="checkbox"
                 onChange={(e)=>{handleChecked(todo.id, todo.checked)}}
               />
+              <button onClick={()=>handleDelete(todo.id)}>Delete</button>
             </li>
 
           ))}
